@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+    <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet" type="text/css" >
+    <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/styles/main.css" rel="stylesheet" type="text/css">
+
+</head>
+<body ng-app="myApp" ng-controller="appController" layout="row" layout-align="center start">
+
+    <md-card class="main-box" layout="column" flex="60">
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <span>List User</span>
+            </div>
+        </md-toolbar>
+
+        <md-card-content>
+            <md-table-container>
+                <table md-table>
+                    <thead md-head md-order="query.order">
+                    <tr md-row>
+                        <th md-column md-order-by="id"><span>ID</span></th>
+                        <th md-column md-order-by="username">Username</th>
+                        <th md-column md-order-by="email">Email</th>
+                        <th md-column>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="user in users.data | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+                        <td md-cell>{{user.id}}</td>
+                        <td md-cell>{{user.username}}</td>
+                        <td md-cell>{{user.email}}</td>
+                        <td md-cell>
+                            <span class="active-status">Active</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
+            <md-table-pagination md-limit="query.limit"
+                                 md-limit-options="[5, 10, 15]"
+                                 md-page="query.page"
+                                 md-total="{{users.total}}"
+                                 md-page-select>
+            </md-table-pagination>
+        </md-card-content>
+    </md-card>
+
+</body>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+
+<script src="app.js"></script>
+
+</html>

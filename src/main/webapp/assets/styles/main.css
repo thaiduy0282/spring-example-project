@@ -1,0 +1,20 @@
+.main-box{
+    padding: 0;
+}
+
+.main-box md-toolbar{
+    background: teal !important;
+}
+
+.main-box md-toolbar span{
+    color: white;
+    font-weight: bold;
+}
+
+.main-box md-card-content{
+    padding: 0 50px 10px 50px;
+}
+
+.active-status{
+    color: yellowgreen;
+}
