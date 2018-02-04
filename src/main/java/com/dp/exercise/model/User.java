@@ -11,6 +11,20 @@ public class User {
 	private String password;
 	private String email;
 
+	public User(){}
+
+	public User(String user, String password, String email){
+		this.username = user;
+		this.password = password;
+		this.email = email;
+	}
+
+	public User(String user, String password){
+		this.username = user;
+		this.password = password;
+		this.email = "";
+	}
+
 	@Id
 	@Column(name = "id")
 	public int getId() {
@@ -39,7 +53,7 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name = "email")
+	@Column(name = "email", nullable = true)
 	public String getEmail() {
 		return email;
 	}

@@ -1,0 +1,16 @@
+{
+  "name": "webapp",
+  "homepage": "https://github.com/thaiduy0282/spring-example-project",
+  "authors": [
+    "Duy Nguyen <thaiduy768@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "angular-material-data-table": "^0.10.10",
+    "angular-material": "^1.1.6",
+    "angular": "^1.6.8",
+    "ng-file-upload": "^12.2.13"
+  }
+}

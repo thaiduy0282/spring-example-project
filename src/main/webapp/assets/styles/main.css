@@ -16,5 +16,11 @@
 }
 
 .active-status{
-    color: yellowgreen;
+    color: tomato;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.user-form md-input-container{
+    padding-bottom: 0;
 }

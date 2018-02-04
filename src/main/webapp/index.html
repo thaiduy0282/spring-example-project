@@ -8,7 +8,38 @@
     <link href="assets/styles/main.css" rel="stylesheet" type="text/css">
 
 </head>
-<body ng-app="myApp" ng-controller="appController" layout="row" layout-align="center start">
+<body ng-app="myApp" ng-controller="appController" layout="row" layout-wrap layout-align="center start">
+
+    <md-card class="main-box" layout="column" flex="60">
+        <md-toolbar class="md-table-toolbar md-default">
+            <div class="md-toolbar-tools">
+                <span>Add User</span>
+            </div>
+        </md-toolbar>
+        <md-card-content layout="column">
+            <form name="form" layout="column" class="user-form">
+                <md-input-container class="user-input">
+                    <label>Name</label>
+                    <input ng-model="user.name">
+                </md-input-container>
+                <div>
+                    <md-button class="md-raised" ngf-select ng-model="file" name="file" ngf-pattern="'.mp3'"
+                         ngf-accept="'.mp3'" ngf-max-size="20MB">
+                        <span ng-if="file">Change file</span>
+                        <span ng-if="!file">Choose file</span>
+                    </md-button>
+                    <span>{{file.name}}</span>
+                </div>
+                <div ng-if="file" class="review" layout="row" layout-align="start center" style="height: 60px;">
+                    <audio controls ngf-src="file"></audio>
+                </div>
+            </form>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button md-raised ng-click="clearInfo()">Clear</md-button>
+            <md-button class="md-raised md-primary" ng-click="submit()">Add</md-button>
+        </md-card-actions>
+    </md-card>
 
     <md-card class="main-box" layout="column" flex="60">
         <md-toolbar class="md-table-toolbar md-default">
@@ -24,17 +55,21 @@
                     <tr md-row>
                         <th md-column md-order-by="id"><span>ID</span></th>
                         <th md-column md-order-by="username">Username</th>
-                        <th md-column md-order-by="email">Email</th>
-                        <th md-column>Status</th>
+                        <th md-column md-order-by="email">Song</th>
+                        <th md-column>Action</th>
                     </tr>
                     </thead>
                     <tbody md-body>
                     <tr md-row ng-repeat="user in users.data | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
                         <td md-cell>{{user.id}}</td>
                         <td md-cell>{{user.username}}</td>
-                        <td md-cell>{{user.email}}</td>
                         <td md-cell>
-                            <span class="active-status">Active</span>
+                            <audio preload="none" controls>
+                                <source ng-src="{{user.email}}" type="audio/mpeg">
+                            </audio>
+                        </td>
+                        <td md-cell>
+                            <span ng-click="deleteUser($event, user.id)" class="active-status">Delete</span>
                         </td>
                     </tr>
                     </tbody>
@@ -58,6 +93,7 @@
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
 
 <script src="app.js"></script>
 
